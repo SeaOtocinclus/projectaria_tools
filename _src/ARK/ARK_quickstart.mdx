@@ -53,13 +53,11 @@ You'll need to update your Aria glasses using the Mobile companion app before yo
 
 ### Install the Mobile companion app
 
-1.  Using your Android smartphone, download Aria's Android APK from [here](https://foreign-service-public-assets.s3.us-west-2.amazonaws.com/apps/android/Aria_v125_arm64.apk)
-
-If your phone only accepts 32-bit apps, please reach out to [AriaOps@meta.com](mailto:AriaOps@meta.com) for the 32-bit .apk.
+Follow the instructions in the [ARK SW Downloads and Updates page](/docs/ARK/ark_downloads) to download and install the app (this is where you'll download updates as well).
 
 ### Pair your glasses
 
-1. Plug your glasses into power using the provided cable.
+1. Plug your glasses into power using the provided cable
 2. Sign into the app using your provided user name and password
 3. Follow the prompts to pair your glasses
     * Your glasses are automatically updated when you first pair them
@@ -69,9 +67,9 @@ Further updates will be queued automatically when you use your glasses via the M
 
 ## Set your Default Recording Profile
 
-You can set the default recording profile via Mobile or Desktop Companion App. This is the recording profile used when you initiate recording via the capture button or Desktop app.
+You can set the default recording profile via Mobile or Desktop Companion App. Once set, this is the default profile used when recording or streaming data by any means.
 
- When you select New Recording in the Mobile Companion app you'll intially see the default recording profile. Select the recording profile to view sensor settings or to select a different recording profile.
+When you select New Recording in the Mobile Companion app, you'll initially see the default recording profile. Select the recording profile to view sensor settings or to select a different recording profile.
 
 In the Mobile Companion App, you can change the Default Recording Profile at any time via Device Settings (select the settings/gear icon next to your glasses on the dashboard).
 
@@ -79,56 +77,47 @@ In the Mobile Companion App, you can change the Default Recording Profile at any
 
 ## Install the Desktop app (Optional)
 
-The Desktop app is required for requesting Machine Perception Services and streaming data, but you don't need the Desktop app to make recordings or download data. You can also visualize data in the Desktop app. Go to the [Desktop app page](desktop_companion_app.mdx) for more detailed instructions.
+You need the Desktop app to request Machine Perception Services, but you don't need the  app to make recordings or download data. The app provides a visualization of streaming data over Wi-Fi, but it doesn't have the capabilities of the Client SDK and you can't subscribe to the data. Go to the [Desktop app page](desktop_companion_app.mdx) for more information.
 
-1. Download the desktop app from the following supported platforms
+Follow the instructions in the [ARK SW Downloads and Updates page](/docs/ARK/ark_downloads) to download and install the app (this is where you'll download updates as well).
 
-<Tabs
-  defaultValue="mac"
-  values={[
-    {label: 'Mac', value: 'mac'},
-    {label: 'Windows', value: 'windows'},
-    {label: 'Ubuntu', value: 'ubuntu'},
-  ]}>
-  <TabItem value="mac">
-  <a href="https://foreign-service-public-assets.s3.us-west-2.amazonaws.com/apps/mac/Aria_v37.dmg">Aria For Mac (Intel & Apple Silicon)</a>
-  </TabItem>
-  <TabItem value="windows">
-    <a href="https://foreign-service-public-assets.s3.us-west-2.amazonaws.com/apps/windows/Aria_v37.msi">Aria For Windows (x64)</a>
- </TabItem>
-  <TabItem value="ubuntu">
-  <a href="https://foreign-service-public-assets.s3.us-west-2.amazonaws.com/apps/linux/Aria_v36.deb">Aria For Linux (x64)</a>
-  </TabItem>
-</Tabs>
+## Install Client SDK and CLI (optional)
 
-2. Use the username and password provided in your welcome email to sign into the app.
+Once you've set up your glasses with the Mobile Companion app, researchers can use the Client SDK or CLI to directly interact with Aria glasses. This is particularly helpful for streaming and subscribing to sensor data.
+
+Go to the [Client SDK and CLI section](/docs/ARK/sdk) for how to install the SDK and explore code samples.
 
 ## Record Data
 
-It's best to initiate recording using the Mobile Companion app or by pressing the Capture button.
+It's best to start and stop recording using the Capture button, Mobile Companion app, the [CLI or SDK](/docs/ARK/sdk).
 
-Make sure you don't use the Privacy Switch to finish a recording, as this will delete your data.
+While you can start and stop recording using the Desktop app, one of the other methods will provide a smoother experience.
 
-:::info
-The longer your glasses record for, the longer it takes a recording to stop. This is because the larger the VRS file, the more time it takes for a recording to finish indexing. The recording has not fully stopped until the Recording LEDs have turned off.
-:::
+### General recording principles
+* If you start recording with one method, you can stop recording using a different method
+* Please allow a few seconds before the recording starts. You'll know recording has started when the Recording LEDs turn on
+* The recording does not stop until the Recoding LED turns off
+   * Because the Aria glasses need to finish indexing before the recording stops, may be a small delay between initiating the stop and the recording stopping
+* The longer your glasses record for, the longer it takes a recording to stop
+   * This is because the larger the VRS file, the more time it takes for a recording to finish indexing.
+* Go to the [Aria Glasses User Manual](/docs/ARK/glasses_manual/glasses_user_manual) to see images of all the buttons as well as LED placement
+
 
 ### Press the Capture button
 
 The capture button is located on the top right of your glasses. The capture button will use the default recording profile.
 
-Once you've pressed the capture button, please allow a few seconds before the recording starts. You'll know recording has started when the Recording LEDs turn on.
-
-Press the same button to stop and save the recording.
-
+1. Press the capture button to start recording
+2. Press the capture button to stop and save the recording
 
 :::tip
-Engaging the privacy switch will stop the recording and discard your recording. Discarded recordings cannot be retrieved.
+Engaging the privacy switch instead of the Capture button will stop the recording and discard your recording. Discarded recordings cannot be retrieved.
 :::
 
 ### Mobile Companion app
 
-* Select New Recording Session in the Aria Dashboard to start recording.
+* Select New Recording Session in the Aria Dashboard to start recording
+* Select Stop Recording in the app
     * Go to the [Mobile Companion App page](/docs/ARK/mobile_companion_app.mdx) for more information
 
 You can alter the Name and Notes of a recording by going to the Recordings menu, selecting a recording and then selecting **Edit**.
@@ -182,22 +171,25 @@ Go to the Recordings section in the Desktop app to download your data. See the [
 [Android Debug Bridge](https://developer.android.com/studio/command-line/adb) (adb) is a command line tool that can be used with Aria glasses.
 
 To download all your data:
-```cpp
+```bash
 adb pull /sdcard/recording /home/unixname/MyVRSFolder
 ```
 
 To download a single VRS file
-```cpp
+```bash
 adb pull /sdcard/recording/myVrsFile.vrs /home/unixname/MyVRSFolder/
 ```
 
 To download a single metadata file
-```cpp
+```bash
 adb pull /sdcard/recording/myVrsFile.json /home/unixname/MyVRSFolder/
 ```
 
 ## Streaming
 
-Using the Desktop app, Aria Sensor data can be live streamed via Wi-Fi. We recommend only using Profiles 12 and 18, which are optimized for streaming.
+Install the [CLient SDK](/docs/ARK/sdk/sdk.mdx) to stream Aria data.
+
+### Access basic visualization
+Through the Desktop app, you can view streaming data, however it does not have the capabilities of the Client SDK and you can't subscribe to the data. When using the Desktop app, we recommend only using Profiles 12 and 18, which are optimized for streaming.
 
 Go to the [Desktop app page](/docs/ARK/desktop_companion_app.mdx#streaming) for detailed instructions.

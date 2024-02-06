@@ -3,6 +3,13 @@ sidebar_position: 30
 title: Dataset Download
 ---
 # How to Download the ADT Dataset
+
+## Overview
+
+This page covers how to download the sample Aria Digital Twin (ADT) sequence as well as how to download specific sequences and types of data. Follow the instructions to download the sample datasets and from there you'll be able to use the CLI to download more data.
+
+The sample dataset is a single-user dataset with body pose in the Apartment. This is a pretty representative example that should give you an idea of the dataset.
+
 By downloading the datasets you agree that you have read and accepted the terms of the [Aria Digital Twin Dataset License Agreement](https://www.projectaria.com/datasets/adt/license/).
 
 ## Download the sample Aria Digital Twin (ADT) sequence
@@ -51,10 +58,13 @@ adt_benchmark_dataset_downloader -c $HOME/Documents/projectaria_tools_adt_data/a
 -d 0 1 2 3 -e
 ```
 
+The sample dataset is a single-user dataset with body pose in the Apartment. This is a pretty representative example to give an idea of the dataset.
+For more information on the content in the other sequences, see the Data Content section below
+
 ## Download the Aria Digital Twin (ADT) benchmark dataset
 ### Data size
 
-Aria Digital Twin dataset consists of 222 sequences in total. The total size of the dataset is about 3.5TB. The dataset is split into 4 data types that can be downloaded individually. The size of each data type is below.
+Aria Digital Twin dataset consists of 217 sequences in total. The total size of the dataset is about 3.5TB. The dataset is split into 4 data types that can be downloaded individually. The size of each data type is below.
 
 | **Data type** | What's included | Per sequence size | Total size for all sequences |
 | --- | --- | --- | --- |
@@ -62,6 +72,8 @@ Aria Digital Twin dataset consists of 222 sequences in total. The total size of 
 | segmentation | Instance segmentation data | 2 - 4 GB | ~750 GB |
 | depth | Depth map data | 4 - 8 GB | ~1.5 TB |
 | synthetic | Synthetic rendering data | 2 - 4 GB | 500 GB |
+
+
 
 ### Download via CLI
 
